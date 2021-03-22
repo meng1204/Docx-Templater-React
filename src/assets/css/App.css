@@ -1,0 +1,19 @@
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+
+.title {
+  float: left;
+  color: #fff;
+  font-size: 18px;
+}
+
+.ant-row-rtl .title {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+[data-theme="dark"] .site-layout-content {
+  background: #141414;
+}
