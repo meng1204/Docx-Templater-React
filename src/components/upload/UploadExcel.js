@@ -1,7 +1,9 @@
 import React from "react";
 import 'antd/dist/antd.css';
 import { Upload, Button, message,Tooltip } from 'antd';
-import { FileExcelOutlined, FileWordOutlined, DownloadOutlined} from '@ant-design/icons';
+import { FileExcelOutlined} from '@ant-design/icons';
+import * as XLSX from 'xlsx';
+import { make_cols } from './../../utils/MakeColumns';
 
 const excel_extension = [
     'text/csv',
@@ -13,21 +15,57 @@ export const UploadExcel = class UploadExcel extends React.Component {
     state = {
         excelList: [
         ],
+        jsonData: [],
+        cols: []
     };
     
 
-    handleExcelChange = info => {
+    handleExcelChange = info => {        
         let excelList = [...info.fileList];
 
         // 1. Limit the number of uploaded files
-        // Only to show two recent uploaded files, and old ones will be replaced by the new
         excelList = excelList.slice(-1);
         this.setState({ excelList: excelList });
-    }
 
+
+        // if (info.file.status === 'done') {
+        //     console.log(info)
+        //     message.success(`${info.file.name} file uploaded successfully`);
+
+        // } else if (info.file.status === 'error') {
+        //     message.error(`${info.file.name} file upload failed.`);
+        // }
+
+        /* set up FileReader */
+        const reader = new FileReader();;
+
+        reader.onload = e => {
+            /* Parse data */
+            const bstr = e.target.result;
+            const wb = XLSX.read(bstr, {
+                type:  "binary",
+                bookVBA: true
+            });
+            /* Get first worksheet */
+            const wsname = wb.SheetNames[0];
+            const ws = wb.Sheets[wsname];
+            /* Convert array of arrays */
+            const data = XLSX.utils.sheet_to_json(ws);
+
+            console.log("data",data);
+
+            /* Update state */
+            this.setState({jsonData: data, cols: make_cols(ws["!ref"]) }, () => {
+                console.log(JSON.stringify(this.state.jsonData, null, 2));
+            });
+        };
+
+        reader.readAsBinaryString(info.file.originFileObj);
+        
+        console.log("this.state",this.state)
+    }
     
     render() {
-
         const propsExcel = {
             action: '//jsonplaceholder.typicode.com/posts/',
             onChange: this.handleExcelChange,
@@ -37,6 +75,7 @@ export const UploadExcel = class UploadExcel extends React.Component {
                 }
                 return excel_extension.includes(file.type) ? true : Upload.LIST_IGNORE;
             },
+            
         };
 
         return (
