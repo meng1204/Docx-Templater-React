@@ -82,14 +82,14 @@ export const UploadExcel = class UploadExcel extends React.Component {
         return (
             <div style={mt20}>
                 <div style={displayInline}>
-                    <Tooltip title="上传数据文件, 只支持Extension: .csv .xls .xlsx">
+                    <Tooltip title="Upload Data File, only accept Extension: .csv .xls .xlsx">
                         <Upload {...propsExcel} fileList={this.state.excelList} >
-                            <Button icon={<FileExcelOutlined />}>上传数据文件(Excel)</Button>
+                            <Button icon={<FileExcelOutlined />}>Upload Data File(Excel)</Button>
                         </Upload>
                     </Tooltip>
                 </div>
                 <div style={displayInline}>
-                    <a href={process.env.PUBLIC_URL + '/assets/exampleExcel.xlsx'} download style={{marginLeft:"20px"}}> 下载Excel文件实例 </a>
+                    <a href={process.env.PUBLIC_URL + '/assets/exampleExcel.xlsx'} download style={{marginLeft:"20px"}}> Download Excel Example </a>
                 </div>
             </div>
         );

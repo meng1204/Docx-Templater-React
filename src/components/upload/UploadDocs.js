@@ -45,15 +45,15 @@ export const UploadDocs = class UploadDocs extends React.Component {
         return (
             <div>
                 <div style={displayInline}>
-                    <Tooltip title="上传模板文件, 只支持Extension: .docs">
+                    <Tooltip title="Upload Template File, Only accept Extension: .docs">
                         <Upload {...propsDocs} fileList={this.state.docsList}>
-                            <Button icon={<FileWordOutlined />}>上传模板文件(Word)</Button>
+                            <Button icon={<FileWordOutlined />}>Upload Template File(Word)</Button>
                         </Upload>
                     </Tooltip>
                 </div>
 
                 <div style={displayInline}>
-                    <a href={process.env.PUBLIC_URL + '/assets/exampleExcel.xlsx'} download style={{marginLeft:"20px"}}> 下载Docs文件实例 </a>
+                    <a href={process.env.PUBLIC_URL + '/assets/exampleExcel.xlsx'} download style={{marginLeft:"20px"}}> Download Docs Example </a>
                 </div>
 
                 
