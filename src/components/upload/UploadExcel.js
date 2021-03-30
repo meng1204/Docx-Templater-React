@@ -12,13 +12,16 @@ const excel_extension = [
 ]
 
 export const UploadExcel = class UploadExcel extends React.Component {
-    state = {
-        excelList: [
-        ],
-        jsonData: [],
-        cols: []
-    };
-    
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            excelList: [
+            ],
+            jsonData: [],
+            cols: []
+        };
+    }
 
     handleExcelChange = info => {        
         let excelList = [...info.fileList];
@@ -28,13 +31,11 @@ export const UploadExcel = class UploadExcel extends React.Component {
         this.setState({ excelList: excelList });
 
 
-        // if (info.file.status === 'done') {
-        //     console.log(info)
-        //     message.success(`${info.file.name} file uploaded successfully`);
-
-        // } else if (info.file.status === 'error') {
-        //     message.error(`${info.file.name} file upload failed.`);
-        // }
+        if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+        }
 
         /* set up FileReader */
         const reader = new FileReader();;

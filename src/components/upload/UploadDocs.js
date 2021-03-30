@@ -7,10 +7,15 @@ const docx_extension = 'application/vnd.openxmlformats-officedocument.wordproces
 
 
 export const UploadDocs = class UploadDocs extends React.Component {
-    state = {
-        docsList: [
-        ],
-    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            docsList: [
+            ],
+        };
+    }
+    
     
     handleDocsChange = info => {
         let docsList = [...info.fileList];
@@ -22,11 +27,6 @@ export const UploadDocs = class UploadDocs extends React.Component {
 
         this.setState({ docsList:docsList });
     };
-
-    downloadExample = info => {
-        
-    }
-
     
     render() {
 
