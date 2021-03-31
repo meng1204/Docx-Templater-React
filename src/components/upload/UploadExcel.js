@@ -53,17 +53,11 @@ export const UploadExcel = class UploadExcel extends React.Component {
             /* Convert array of arrays */
             const data = XLSX.utils.sheet_to_json(ws);
 
-            console.log("data",data);
-
             /* Update state */
-            this.setState({jsonData: data, cols: make_cols(ws["!ref"]) }, () => {
-                console.log(JSON.stringify(this.state.jsonData, null, 2));
-            });
+            this.setState({jsonData: data, cols: make_cols(ws["!ref"]) });
         };
 
         reader.readAsBinaryString(info.file.originFileObj);
-        
-        console.log("this.state",this.state)
     }
     
     render() {

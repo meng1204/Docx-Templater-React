@@ -1,9 +1,10 @@
 import React from "react";
 import 'antd/dist/antd.css';
 import { Button,message } from 'antd';
-import { DownloadOutlined,ThunderboltOutlined} from '@ant-design/icons';
+import { ThunderboltOutlined} from '@ant-design/icons';
 import { UploadDocs } from "../components/upload/UploadDocs"
 import { UploadExcel } from "../components/upload/UploadExcel"
+import DocsTransform from "../utils/DocsTransform"
 
 
 
@@ -15,7 +16,15 @@ export const Home = class Home extends React.Component {
         this.ExcelRef = React.createRef();
     }
 
-    handleClick = info => {
+    handleClick = () => {
+        const excel = this.ExcelRef.current.state;
+        const docs = this.DocsRef.current.state;
+
+        if((excel.excelList).length === 0 || (docs.docsList).length === 0){
+            message.error(` You should upload Docs/Excel Files!`);
+        }
+
+        DocsTransform({docs:docs.state, excel: excel.state })
     };
 
     render() {
@@ -26,9 +35,6 @@ export const Home = class Home extends React.Component {
                 <Button type="primary" shape="round" icon={<ThunderboltOutlined />} size="large" style={mt20} onClick={this.handleClick}>
                     Generate
                 </Button>
-                {/* <Button type="default" shape="round" icon={<DownloadOutlined />} size="large" style={mt20,ml20}>
-                    Download
-                </Button> */}
             </div>
             
         );
@@ -37,8 +43,4 @@ export const Home = class Home extends React.Component {
 
 const mt20 = {
     marginTop: '20px',
-};
-
-const ml20 = {
-    marginLeft: '20px',
 };
