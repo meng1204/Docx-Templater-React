@@ -14,7 +14,7 @@ export const App = class App extends React.Component {
       <Content style={{ padding: '0 20px' ,marginTop: 90}}>
         <div style={siteLayoutContent}><Home/></div>
       </Content>
-      <Footer style={footer}>Docs Templater ©2021 Created by Nico Chen</Footer>
+      <Footer style={footer}>Docx Templater ©2021 Created by Nico Chen</Footer>
     </Layout>
     );
   }
