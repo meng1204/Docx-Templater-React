@@ -24,7 +24,7 @@ export const Home = class Home extends React.Component {
             message.error(` You should upload Docs/Excel Files!`);
         }
 
-        DocsTransform({docs:docs.state, excel: excel.state })
+        DocsTransform({docs:docs, excel: excel })
     };
 
     render() {
