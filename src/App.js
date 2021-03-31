@@ -8,13 +8,13 @@ export const App = class App extends React.Component {
   render() {
     return (
       <Layout className="layout">
-      <Header>
+      <Header style = {headerLayout}>
         <div style={title}> Docx Templater </div>
       </Header>
-      <Content style={{ padding: '0 50px' }}>
+      <Content style={{ padding: '0 20px' ,marginTop: 90}}>
         <div style={siteLayoutContent}><Home/></div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Docs Templater ©2021 Created by Nico Chen</Footer>
+      <Footer style={footer}>Docs Templater ©2021 Created by Nico Chen</Footer>
     </Layout>
     );
   }
@@ -22,14 +22,29 @@ export const App = class App extends React.Component {
 
 
 const siteLayoutContent  = {
-  minHeight: '280px',
+  // minHeight: '2800px',
   padding: '24px',
   background: '#fff',
+  height: "calc(100vh - 160px)"
+}
+
+const headerLayout ={
+  position: 'fixed', 
+  zIndex: 100, 
+  width: '100%'
 }
 
 const title = {
   float: 'left',
   color: '#fff',
   fontSize: '18px',
+}
+
+const footer = {
+  // clear: 'both',
+  // position: 'relative',
+  // height: '200px',
+  // marginTop: '-200px',
+  textAlign: 'center'
 }
 
