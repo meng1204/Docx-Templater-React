@@ -9,7 +9,7 @@ export const App = class App extends React.Component {
     return (
       <Layout className="layout">
       <Header>
-        <div style={title}> Docs Templater </div>
+        <div style={title}> Docx Templater </div>
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div style={siteLayoutContent}><Home/></div>
